@@ -5,7 +5,6 @@ import ru.dediev.servlets.model.entity.Event;
 import ru.dediev.servlets.service.EventService;
 import ru.dediev.servlets.service.impl.EventServiceImpl;
 
-import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -20,7 +19,7 @@ public class EventController extends HttpServlet {
     private final Gson gson = new Gson();
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         resp.setContentType("application/json");
         PrintWriter outWriter = resp.getWriter();
         final Event eventId = gson.fromJson(req.getReader(), Event.class);
@@ -33,7 +32,7 @@ public class EventController extends HttpServlet {
     }
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         resp.setContentType("application/json");
         PrintWriter outWriter = resp.getWriter();
         final Event savedEvent = eventService.save(gson.fromJson(req.getReader(), Event.class));
@@ -42,7 +41,7 @@ public class EventController extends HttpServlet {
     }
 
     @Override
-    protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         resp.setContentType("application/json");
         PrintWriter outWriter = resp.getWriter();
         final Event updatedEvent = eventService.update(gson.fromJson(req.getReader(), Event.class));
@@ -51,7 +50,7 @@ public class EventController extends HttpServlet {
     }
 
     @Override
-    protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         resp.setContentType("application/json");
         Event event = gson.fromJson(req.getReader(), Event.class);
         eventService.remove(event.getId());

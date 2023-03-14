@@ -24,7 +24,7 @@ public class HibernateUserRepositoryImpl implements UserRepository {
     public User getById(Integer id) {
         try (Session session = HibernateConfiguration.getSession()) {
             return session
-                    .createQuery("FROM User a LEFT JOIN FETCH a.eventEntities WHERE a.id = :userId",
+                    .createQuery("FROM User a LEFT JOIN FETCH a.events WHERE a.id = :userId",
                             User.class)
                     .setParameter("userId", id)
                     .getSingleResult();
@@ -36,7 +36,7 @@ public class HibernateUserRepositoryImpl implements UserRepository {
         try (Session session = HibernateConfiguration.getSession()) {
             return session
                     .createQuery(
-                            "SELECT a FROM User a JOIN FETCH a.eventEntities e",
+                            "SELECT a FROM User a JOIN FETCH a.events e",
                             User.class)
                     .getResultList();
         }

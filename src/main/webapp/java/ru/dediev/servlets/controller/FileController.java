@@ -2,18 +2,15 @@ package ru.dediev.servlets.controller;
 
 import com.google.gson.Gson;
 import org.apache.commons.fileupload.FileItem;
-import org.apache.commons.fileupload.disk.DiskFileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import ru.dediev.servlets.model.entity.FileEntity;
 import ru.dediev.servlets.service.impl.FileServiceImpl;
 
-import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.Part;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -29,7 +26,7 @@ public class FileController extends HttpServlet {
     private final Gson gson = new Gson();
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         resp.setContentType("application/json");
         PrintWriter outWriter = resp.getWriter();
         final FileEntity file = gson.fromJson(req.getReader(), FileEntity.class);
@@ -42,7 +39,7 @@ public class FileController extends HttpServlet {
     }
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         resp.setContentType("application/json");
         PrintWriter outWriter = resp.getWriter();
         final FileEntity savedFile = fileService.save(fileUploadMethod(req));
@@ -51,7 +48,7 @@ public class FileController extends HttpServlet {
     }
 
     @Override
-    protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         resp.setContentType("application/json");
         PrintWriter outWriter = resp.getWriter();
         final FileEntity updatedFile = fileService.update(gson.fromJson(req.getReader(), FileEntity.class));
@@ -60,7 +57,7 @@ public class FileController extends HttpServlet {
     }
 
     @Override
-    protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         resp.setContentType("application/json");
         PrintWriter outWriter = resp.getWriter();
         FileEntity file = gson.fromJson(req.getReader(), FileEntity.class);
@@ -69,7 +66,7 @@ public class FileController extends HttpServlet {
         outWriter.flush();
     }
 
-    protected FileEntity fileUploadMethod(HttpServletRequest req) throws IOException {
+    protected FileEntity fileUploadMethod(HttpServletRequest req) {
         FileEntity fileEntity = new FileEntity();
 
         DiskFileItemFactory diskFileItemFactory = new DiskFileItemFactory();
