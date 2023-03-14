@@ -1,22 +1,28 @@
 package ru.dediev.servlets.model.entity;
 
-
 import jakarta.persistence.*;
+import lombok.*;
 
 import java.util.List;
 
+@Data
 @Entity
-@Table(name = "")
+@Table(name = "user")
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id")
-    private Integer userId;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "user_id")
+    private Integer id;
 
     @Column(name = "user_name")
-    private  String userName;
+    private String name;
 
-    @OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
-    private List<Event> events;
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ToString.Exclude
+    private transient List<Event> events;
+
+
+
+
 }

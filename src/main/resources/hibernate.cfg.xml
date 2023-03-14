@@ -9,11 +9,11 @@
         <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
         <property name="connection.username">proselyte</property>
         <property name="connection.password">proselyte</property>
-        <!--<property name="hibernate.hbm2ddl.auto">create</property>-->
+       <!-- <property name="hibernate.hbm2ddl.auto">create</property> -->
         <property name="show_sql">true</property>
 
         <mapping class="ru.dediev.servlets.model.entity.Event"/>
         <mapping class="ru.dediev.servlets.model.entity.User"/>
-        <mapping class="ru.dediev.servlets.model.entity.File"/>
+        <mapping class="ru.dediev.servlets.model.entity.FileEntity"/>
     </session-factory>
 </hibernate-configuration>

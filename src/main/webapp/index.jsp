@@ -1,5 +1,12 @@
+<!DOCTYPE html>
 <html>
+<head>
+    <title> Java File Upload Servlet </title>
+</head>
 <body>
-<h2>Hello World!!D</h2>
+<form method="post" action="fileupload" enctype="multipart/form-data">
+    <input type="file" name="fileEntity" />
+    <input type="submit" value="Upload" />
+</form>
 </body>
 </html>
