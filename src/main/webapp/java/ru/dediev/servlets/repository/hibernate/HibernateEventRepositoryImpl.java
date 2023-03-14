@@ -23,7 +23,7 @@ public class HibernateEventRepositoryImpl implements EventRepository {
     public Event getById(Integer id) {
         try (Session session = HibernateConfiguration.getSession()) {
             return session
-                    .createQuery("select a from  Event a where  a.id = :eventId"
+                    .createQuery("select a from  Event a where a.id = :eventId"
                             , Event.class)
                     .setParameter("eventId", id)
                     .getSingleResult();
