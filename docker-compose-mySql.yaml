@@ -11,3 +11,11 @@ services:
       MYSQL_USER: proselyte
       MYSQL_PASSWORD: proselyte
       MYSQL_ROOT_HOST: '%'
+
+  servlets-app:
+    image: app
+    depends_on:
+      - db
+    ports:
+      - '8080:8080'
+    restart: always

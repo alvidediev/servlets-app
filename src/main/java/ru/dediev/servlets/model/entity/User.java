@@ -21,8 +21,4 @@ public class User {
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @ToString.Exclude
     private transient List<Event> events;
-
-
-
-
 }
