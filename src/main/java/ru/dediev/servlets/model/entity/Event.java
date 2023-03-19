@@ -13,11 +13,11 @@ public class Event {
     @Column(name = "event_id")
     private Integer id;
 
-    @OneToOne( cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "fk_file_id")
     private FileEntity file;
 
-    @ManyToOne(  cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "fk_user_id")
     private User user;
 }

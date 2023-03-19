@@ -32,12 +32,6 @@ public class EventServiceImpl implements EventService {
 
     @Override
     public Event save(Event eventEntity) {
-        final FileEntity fileToSave = eventEntity.getFile();
-        final FileEntity savedFile = fileRepository.save(fileToSave);
-        final User userToSave = eventEntity.getUser();
-        final User savedUser = userRepository.save(userToSave);
-        eventEntity.setFile(savedFile);
-        eventEntity.setUser(savedUser);
         return eventRepository.save(eventEntity);
     }
 

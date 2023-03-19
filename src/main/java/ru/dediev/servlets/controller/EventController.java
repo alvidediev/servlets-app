@@ -22,11 +22,12 @@ public class EventController extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         resp.setContentType("application/json");
         PrintWriter outWriter = resp.getWriter();
-        final Event eventId = gson.fromJson(req.getReader(), Event.class);
-        if (eventId.getId() == 0) {
+        String idParameterFromClient = req.getParameter("id");
+        int id = Integer.parseInt(idParameterFromClient);
+        if (id == 0) {
             outWriter.print(gson.toJson(eventService.getAll()));
         } else {
-            outWriter.print(gson.toJson(eventService.getById(eventId.getId())));
+            outWriter.print(gson.toJson(eventService.getById(id)));
         }
         outWriter.flush();
     }

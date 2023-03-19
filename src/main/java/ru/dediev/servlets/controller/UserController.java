@@ -22,11 +22,12 @@ public class UserController extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         resp.setContentType("application/json");
         PrintWriter outWriter = resp.getWriter();
-        final User user = gson.fromJson(req.getReader(), User.class);
-        if (user.getId() == 0) {
+        String idParameterFromClient = req.getParameter("id");
+        int id = Integer.parseInt(idParameterFromClient);
+        if (id == 0) {
             outWriter.print(gson.toJson(userService.getAll()));
         } else {
-            outWriter.print(gson.toJson(userService.getById(user.getId())));
+            outWriter.print(gson.toJson(userService.getById(id)));
         }
         outWriter.flush();
     }

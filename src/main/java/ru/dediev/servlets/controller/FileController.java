@@ -29,11 +29,12 @@ public class FileController extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         resp.setContentType("application/json");
         PrintWriter outWriter = resp.getWriter();
-        final FileEntity file = gson.fromJson(req.getReader(), FileEntity.class);
-        if (file.getId() == 0) {
+        String idParameterFromClient = req.getParameter("id");
+        int id = Integer.parseInt(idParameterFromClient);
+        if (id == 0) {
             outWriter.print(gson.toJson(fileService.getAll()));
         } else {
-            outWriter.print(gson.toJson(fileService.getById(file.getId())));
+            outWriter.print(gson.toJson(fileService.getById(id)));
         }
         outWriter.flush();
     }
